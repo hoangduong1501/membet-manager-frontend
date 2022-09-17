@@ -205,26 +205,6 @@ const EnhancedTableToolbar = (props) => {
         setOpen(false);
     };
 
-    // useEffect(() => {
-    //     handleGetData();
-    // });
-
-    // const handleGetData = async() => {
-    //     try {
-    //         var {data} = await api.get('/member');
-    //         debugger
-    //         data.data.data.forEach(element => {
-    //             debugger
-    //             rows.push(createData(element.member_id, element.full_name, element.gender, element.phone, element.identity_card_number, element.address));
-    //         });
-    //         debugger
-
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-            
-    // }
-
     return (
         <div>
             <Toolbar
@@ -285,6 +265,7 @@ export default function EnhancedTable() {
     const [page, setPage] = React.useState(0);
     const [dense, setDense] = React.useState(false);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [members, setMembers] = React.useState([]);
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
@@ -292,9 +273,39 @@ export default function EnhancedTable() {
         setOrderBy(property);
     };
 
+    useEffect(() => {
+        handleGetData();
+    });
+
+    const handleGetData = async () => {
+        try {
+            var { data } = await api.get('/member');
+            const list = data.data.data.map(item => {
+                return {
+                    member_id: item.member_id,
+                    full_name: item.full_name,
+                    gender: item.gender,
+                    phone: item.phone,
+                    identity_card_number: item.identity_card_number,
+                    total_donate: item.total_donate,
+                    address: item.address
+
+                }
+            }
+            )
+            setMembers(list);
+
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
+
+
     const handleSelectAllClick = (event) => {
         if (event.target.checked) {
-            const newSelected = rows.map((n) => n.member_id);
+            const newSelected = members.map((n) => n.member_id);
             setSelected(newSelected);
             return;
         }
@@ -334,7 +345,7 @@ export default function EnhancedTable() {
     const isSelected = (member_id) => selected.indexOf(member_id) !== -1;
 
     // Avoid a layout jump when reaching the last page with empty rows.
-    const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+    const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - members.length) : 0;
 
     return (
         <Box sx={{ width: '100%' }}>
@@ -348,12 +359,12 @@ export default function EnhancedTable() {
                             orderBy={orderBy}
                             onSelectAllClick={handleSelectAllClick}
                             onRequestSort={handleRequestSort}
-                            rowCount={rows.length}
+                            rowCount={members.length}
                         />
                         <TableBody>
                             {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                  rows.slice().sort(getComparator(order, orderBy)) */}
-                            {stableSort(rows, getComparator(order, orderBy))
+                            {stableSort(members, getComparator(order, orderBy))
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row, index) => {
                                     const isItemSelected = isSelected(row.member_id);
@@ -419,7 +430,7 @@ export default function EnhancedTable() {
                 <TablePagination
                     rowsPerPageOptions={[5, 10, 25, 50]}
                     component="div"
-                    count={rows.length}
+                    count={members.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onPageChange={handleChangePage}
