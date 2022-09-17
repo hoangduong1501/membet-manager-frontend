@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+import api from '../../../utils/api';
 
 // material-ui
 import {
@@ -42,18 +43,21 @@ const AuthLogin = () => {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
+    const handleLogin = ({ email, password }) => {
+        api.post('auth/login', { email, password });
+    };
 
     return (
         <>
             <Formik
                 initialValues={{
-                    email: 'info@codedthemes.com',
-                    password: '123456',
+                    email: '',
+                    password: '',
                     submit: null
                 }}
                 validationSchema={Yup.object().shape({
-                    email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-                    password: Yup.string().max(255).required('Password is required')
+                    email: Yup.string().email('Email không hợp lệ').max(255).required('Email là bắt buộc'),
+                    password: Yup.string().max(255).required('Mật khẩu bắt buộc')
                 })}
                 onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                     try {
@@ -71,7 +75,7 @@ const AuthLogin = () => {
                         <Grid container spacing={3}>
                             <Grid item xs={12}>
                                 <Stack spacing={1}>
-                                    <InputLabel htmlFor="email-login">Email Address</InputLabel>
+                                    <InputLabel htmlFor="email-login">Email</InputLabel>
                                     <OutlinedInput
                                         id="email-login"
                                         type="email"
@@ -92,7 +96,7 @@ const AuthLogin = () => {
                             </Grid>
                             <Grid item xs={12}>
                                 <Stack spacing={1}>
-                                    <InputLabel htmlFor="password-login">Password</InputLabel>
+                                    <InputLabel htmlFor="password-login">Mật Khẩu</InputLabel>
                                     <OutlinedInput
                                         fullWidth
                                         error={Boolean(touched.password && errors.password)}
@@ -137,7 +141,7 @@ const AuthLogin = () => {
                                                 size="small"
                                             />
                                         }
-                                        label={<Typography variant="h6">Keep me sign in</Typography>}
+                                        label={<Typography variant="h6">Lưu Đăng Nhập</Typography>}
                                     />
                                     {/* <Link variant="h6" component={RouterLink} to="" color="text.primary">
                                         Forgot Password?
@@ -159,8 +163,9 @@ const AuthLogin = () => {
                                         type="submit"
                                         variant="contained"
                                         color="primary"
+                                        onClick={handleLogin({})}
                                     >
-                                        Login
+                                        Đăng Nhập
                                     </Button>
                                 </AnimateButton>
                             </Grid>

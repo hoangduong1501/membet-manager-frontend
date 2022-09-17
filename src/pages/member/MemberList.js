@@ -205,7 +205,7 @@ const EnhancedTableToolbar = (props) => {
                     </Typography>
                 ) : (
                     <Typography sx={{ flex: '1 1 100%' }} variant="h6" id="tableTitle" component="div">
-                        Danh sách dữ liệu mẫu
+                        Danh Sách Thành Viên
                     </Typography>
                 )}
 
