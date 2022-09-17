@@ -15,7 +15,7 @@ const griddata = {
     children: [
         {
             id: 'griddata',
-            title: 'Grid Data',
+            title: 'Thành Viên',
             type: 'item',
             url: '/griddata',
             icon: icons.DashboardOutlined,

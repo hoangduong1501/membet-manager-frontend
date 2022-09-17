@@ -21,6 +21,14 @@ import Switch from '@mui/material/Switch';
 import { DeleteOutlined, FilterOutlined, FormOutlined, UserAddOutlined, ReloadOutlined } from '@ant-design/icons';
 import { visuallyHidden } from '@mui/utils';
 import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import { PhoneOutlined, IdcardOutlined } from '@ant-design/icons';
+import Grid from '@mui/material/Grid';
+import { FormControl, InputAdornment, OutlinedInput, Stack, Select, MenuItem, InputLabel, Avatar } from '@mui/material';
 
 function createData(name, calories, fat, carbs, protein) {
     return {
@@ -171,53 +179,191 @@ EnhancedTableHead.propTypes = {
 
 const EnhancedTableToolbar = (props) => {
     const { numSelected } = props;
+    const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
-        <Toolbar
-            sx={{
-                pl: { sm: 2 },
-                pr: { xs: 1, sm: 1 },
-                ...(numSelected > 0 && {
-                    bgcolor: (theme) => alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity)
-                })
-            }}
-        >
-            {numSelected > 0 ? (
-                <Typography sx={{ flex: '1 1 100%' }} color="inherit" variant="subtitle1" component="div">
-                    Đã chọn {numSelected} dòng
-                </Typography>
-            ) : (
-                <Typography sx={{ flex: '1 1 100%' }} variant="h6" id="tableTitle" component="div">
-                    Danh sách dữ liệu mẫu
-                </Typography>
-            )}
+        <div>
+            <Toolbar
+                sx={{
+                    pl: { sm: 2 },
+                    pr: { xs: 1, sm: 1 },
+                    ...(numSelected > 0 && {
+                        bgcolor: (theme) => alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity)
+                    })
+                }}
+            >
+                {numSelected > 0 ? (
+                    <Typography sx={{ flex: '1 1 100%' }} color="inherit" variant="subtitle1" component="div">
+                        Đã chọn {numSelected} dòng
+                    </Typography>
+                ) : (
+                    <Typography sx={{ flex: '1 1 100%' }} variant="h6" id="tableTitle" component="div">
+                        Danh sách dữ liệu mẫu
+                    </Typography>
+                )}
 
-            {numSelected > 0 ? (
-                <Tooltip title="Xóa">
-                    <IconButton color="error">
-                        <DeleteOutlined />
-                    </IconButton>
-                </Tooltip>
-            ) : (
-                <>
-                    <Tooltip title="Thêm dữ liệu">
-                        <IconButton color="primary" size="large">
-                            <UserAddOutlined />
+                {numSelected > 0 ? (
+                    <Tooltip title="Xóa">
+                        <IconButton color="error">
+                            <DeleteOutlined />
                         </IconButton>
                     </Tooltip>
-                    <Tooltip title="Làm mới dữ liệu">
-                        <IconButton color="primary" size="large">
-                            <ReloadOutlined />
-                        </IconButton>
-                    </Tooltip>
-                    <Tooltip title="Lọc dữ liệu">
-                        <IconButton color="primary" size="large">
-                            <FilterOutlined />
-                        </IconButton>
-                    </Tooltip>
-                </>
-            )}
-        </Toolbar>
+                ) : (
+                    <>
+                        <Tooltip title="Thêm dữ liệu" onClick={handleClickOpen}>
+                            <IconButton color="primary" size="large">
+                                <UserAddOutlined />
+                            </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Làm mới dữ liệu">
+                            <IconButton color="primary" size="large">
+                                <ReloadOutlined />
+                            </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Lọc dữ liệu">
+                            <IconButton color="primary" size="large">
+                                <FilterOutlined />
+                            </IconButton>
+                        </Tooltip>
+                    </>
+                )}
+            </Toolbar>
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>
+                    <Typography variant="h3">Sign up</Typography>
+                </DialogTitle>
+                <DialogContent>
+                    <Grid xs={12} md={12} container spacing={2}>
+                        <Grid item xs={12} md={6}>
+                            <Stack spacing={1}>
+                                <InputLabel htmlFor="lastname-signup">Last Name*</InputLabel>
+                                <OutlinedInput
+                                    size="medium"
+                                    id="IdCard"
+                                    startAdornment={
+                                        <InputAdornment position="start">
+                                            <IdcardOutlined />
+                                        </InputAdornment>
+                                    }
+                                    aria-describedby="header-search-text"
+                                    inputProps={{
+                                        'aria-label': 'weight'
+                                    }}
+                                    placeholder="Số CCCD/ CMND"
+                                />
+                            </Stack>
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <Stack spacing={1}>
+                                <InputLabel htmlFor="lastname-signup">Last Name*</InputLabel>
+                                <OutlinedInput
+                                    size="medium"
+                                    id="Phone"
+                                    startAdornment={
+                                        <InputAdornment position="start">
+                                            <PhoneOutlined />
+                                        </InputAdornment>
+                                    }
+                                    aria-describedby="header-search-text"
+                                    inputProps={{
+                                        'aria-label': 'weight'
+                                    }}
+                                    placeholder="SDT"
+                                />
+                            </Stack>
+                        </Grid>
+                        <Grid item xs={12} md={12}>
+                            <Stack spacing={1}>
+                                <InputLabel htmlFor="lastname-signup">Last Name*</InputLabel>
+                                <OutlinedInput
+                                    size="medium"
+                                    id="Phone"
+                                    startAdornment={
+                                        <InputAdornment position="start">
+                                            <PhoneOutlined />
+                                        </InputAdornment>
+                                    }
+                                    aria-describedby="header-search-text"
+                                    inputProps={{
+                                        'aria-label': 'weight'
+                                    }}
+                                    placeholder="Full name"
+                                />
+                            </Stack>
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <Stack spacing={1}>
+                                <InputLabel htmlFor="lastname-signup">Last Name*</InputLabel>
+                                <Select labelId="demo-simple-select-label" id="demo-simple-select" label="Age">
+                                    <MenuItem value={10}>Nam</MenuItem>
+                                    <MenuItem value={20}>Nữ</MenuItem>
+                                </Select>
+                            </Stack>
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <Stack spacing={1}>
+                                <InputLabel htmlFor="lastname-signup">Last Name*</InputLabel>
+                                <OutlinedInput
+                                    size="medium"
+                                    id="IdCard"
+                                    startAdornment={
+                                        <InputAdornment position="start">
+                                            <IdcardOutlined />
+                                        </InputAdornment>
+                                    }
+                                    aria-describedby="header-search-text"
+                                    inputProps={{
+                                        'aria-label': 'weight'
+                                    }}
+                                    placeholder="cap bac"
+                                />
+                            </Stack>
+                        </Grid>
+                        <Grid item xs={12} md={12}>
+                            <Stack spacing={1}>
+                                <InputLabel htmlFor="lastname-signup">Last Name*</InputLabel>
+                                <OutlinedInput
+                                    size="medium"
+                                    id="IdCard"
+                                    startAdornment={
+                                        <InputAdornment position="start">
+                                            <IdcardOutlined />
+                                        </InputAdornment>
+                                    }
+                                    aria-describedby="header-search-text"
+                                    inputProps={{
+                                        'aria-label': 'weight'
+                                    }}
+                                    placeholder="ddia chgiu"
+                                />
+                            </Stack>
+                        </Grid>
+                        <Grid item xs={12} md={12}>
+                            <Stack spacing={1}>
+                                <input type="file" />
+                            </Stack>
+                        </Grid>
+                    </Grid>
+                </DialogContent>
+                <DialogActions>
+                    <Box sx={{ mx: 'auto' }}>
+                        <Button variant="contained" color="primary" sx={{ m: 1 }} onClick={handleClose}>
+                            Lưu
+                        </Button>
+                        <Button variant="contained" sx={{ m: 1 }} onClick={handleClose}>
+                            Hủy
+                        </Button>
+                    </Box>
+                </DialogActions>
+            </Dialog>
+        </div>
     );
 };
 

@@ -139,9 +139,9 @@ const AuthLogin = () => {
                                         }
                                         label={<Typography variant="h6">Keep me sign in</Typography>}
                                     />
-                                    <Link variant="h6" component={RouterLink} to="" color="text.primary">
+                                    {/* <Link variant="h6" component={RouterLink} to="" color="text.primary">
                                         Forgot Password?
-                                    </Link>
+                                    </Link> */}
                                 </Stack>
                             </Grid>
                             {errors.submit && (
@@ -164,14 +164,14 @@ const AuthLogin = () => {
                                     </Button>
                                 </AnimateButton>
                             </Grid>
-                            <Grid item xs={12}>
+                            {/* <Grid item xs={12}>
                                 <Divider>
                                     <Typography variant="caption"> Login with</Typography>
                                 </Divider>
-                            </Grid>
-                            <Grid item xs={12}>
+                            </Grid> */}
+                            {/* <Grid item xs={12}>
                                 <FirebaseSocial />
-                            </Grid>
+                            </Grid> */}
                         </Grid>
                     </form>
                 )}

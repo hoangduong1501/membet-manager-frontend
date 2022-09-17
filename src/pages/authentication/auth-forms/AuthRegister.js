@@ -33,7 +33,7 @@ import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 // ============================|| FIREBASE - REGISTER ||============================ //
 
 const AuthRegister = () => {
-    const [level, setLevel] = useState();
+    // const [level, setLevel] = useState();
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
@@ -43,14 +43,14 @@ const AuthRegister = () => {
         event.preventDefault();
     };
 
-    const changePassword = (value) => {
-        const temp = strengthIndicator(value);
-        setLevel(strengthColor(temp));
-    };
+    // const changePassword = (value) => {
+    //     const temp = strengthIndicator(value);
+    //     setLevel(strengthColor(temp));
+    // };
 
-    useEffect(() => {
-        changePassword('');
-    }, []);
+    // useEffect(() => {
+    //     changePassword('');
+    // }, []);
 
     return (
         <>
@@ -181,10 +181,10 @@ const AuthRegister = () => {
                                         value={values.password}
                                         name="password"
                                         onBlur={handleBlur}
-                                        onChange={(e) => {
-                                            handleChange(e);
-                                            changePassword(e.target.value);
-                                        }}
+                                        // onChange={(e) => {
+                                        //     handleChange(e);
+                                        //     changePassword(e.target.value);
+                                        // }}
                                         endAdornment={
                                             <InputAdornment position="end">
                                                 <IconButton
@@ -209,18 +209,18 @@ const AuthRegister = () => {
                                 </Stack>
                                 <FormControl fullWidth sx={{ mt: 2 }}>
                                     <Grid container spacing={2} alignItems="center">
-                                        <Grid item>
+                                        {/* <Grid item>
                                             <Box sx={{ bgcolor: level?.color, width: 85, height: 8, borderRadius: '7px' }} />
-                                        </Grid>
-                                        <Grid item>
+                                        </Grid> */}
+                                        {/* <Grid item>
                                             <Typography variant="subtitle1" fontSize="0.75rem">
                                                 {level?.label}
                                             </Typography>
-                                        </Grid>
+                                        </Grid> */}
                                     </Grid>
                                 </FormControl>
                             </Grid>
-                            <Grid item xs={12}>
+                            {/* <Grid item xs={12}>
                                 <Typography variant="body2">
                                     By Signing up, you agree to our &nbsp;
                                     <Link variant="subtitle2" component={RouterLink} to="#">
@@ -231,7 +231,7 @@ const AuthRegister = () => {
                                         Privacy Policy
                                     </Link>
                                 </Typography>
-                            </Grid>
+                            </Grid> */}
                             {errors.submit && (
                                 <Grid item xs={12}>
                                     <FormHelperText error>{errors.submit}</FormHelperText>
@@ -248,18 +248,18 @@ const AuthRegister = () => {
                                         variant="contained"
                                         color="primary"
                                     >
-                                        Create Account
+                                        Tạo Tài Khoản
                                     </Button>
                                 </AnimateButton>
                             </Grid>
-                            <Grid item xs={12}>
+                            {/* <Grid item xs={12}>
                                 <Divider>
                                     <Typography variant="caption">Sign up with</Typography>
                                 </Divider>
                             </Grid>
                             <Grid item xs={12}>
                                 <FirebaseSocial />
-                            </Grid>
+                            </Grid> */}
                         </Grid>
                     </form>
                 )}

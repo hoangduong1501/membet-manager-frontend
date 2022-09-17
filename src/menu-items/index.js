@@ -8,7 +8,13 @@ import griddata from './griddata';
 // ==============================|| MENU ITEMS ||============================== //
 
 const menuItems = {
-    items: [dashboard, griddata, pages, utilities, support]
+    items: [
+        // dashboard,
+        griddata
+        // pages,
+        // utilities,
+        // support
+    ]
 };
 
 export default menuItems;
