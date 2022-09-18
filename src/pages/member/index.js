@@ -4,7 +4,7 @@ import MemberDetail from './MemberDetail';
 
 const MemberList = () => (
     <MainCard>
-        {/* <MemberDetail /> */}
+        <MemberDetail />
         <OrdersTable />
     </MainCard>
 );

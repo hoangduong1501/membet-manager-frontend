@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -12,6 +13,15 @@ import Grid from '@mui/material/Grid';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import { CloseOutlined } from '@ant-design/icons';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+    palette: {
+        secondary: {
+            main: '#11cb5f'
+        }
+    }
+});
 
 export default function FormDialog() {
     const [open, setOpen] = React.useState(false);
@@ -40,115 +50,124 @@ export default function FormDialog() {
                     <Typography variant="h3">Sign up</Typography>
                 </DialogTitle>
                 <DialogContent>
-                    <Grid xs={12} md={12} container spacing={2}>
-                        <Grid item xs={12} md={6}>
-                            <Stack spacing={1}>
-                                <InputLabel htmlFor="lastname-signup">Last Name*</InputLabel>
-                                <OutlinedInput
-                                    size="medium"
-                                    id="IdCard"
-                                    startAdornment={
-                                        <InputAdornment position="start">
-                                            <IdcardOutlined />
-                                        </InputAdornment>
-                                    }
-                                    aria-describedby="header-search-text"
-                                    inputProps={{
-                                        'aria-label': 'weight'
-                                    }}
-                                    placeholder="Số CCCD/ CMND"
-                                />
-                            </Stack>
+                    <Grid xs={12} md={12} container>
+                        <Grid xs={12} md={9} container spacing={2}>
+                            <Grid item xs={12} md={6}>
+                                <Stack spacing={1}>
+                                    <InputLabel htmlFor="lastname-signup">Last Name*</InputLabel>
+                                    <OutlinedInput
+                                        size="medium"
+                                        id="IdCard"
+                                        startAdornment={
+                                            <InputAdornment position="start">
+                                                <IdcardOutlined />
+                                            </InputAdornment>
+                                        }
+                                        aria-describedby="header-search-text"
+                                        inputProps={{
+                                            'aria-label': 'weight'
+                                        }}
+                                        placeholder="Số CCCD/ CMND"
+                                    />
+                                </Stack>
+                            </Grid>
+                            <Grid item xs={12} md={6}>
+                                <Stack spacing={1}>
+                                    <InputLabel htmlFor="lastname-signup">Last Name*</InputLabel>
+                                    <OutlinedInput
+                                        size="medium"
+                                        id="Phone"
+                                        startAdornment={
+                                            <InputAdornment position="start">
+                                                <PhoneOutlined />
+                                            </InputAdornment>
+                                        }
+                                        aria-describedby="header-search-text"
+                                        inputProps={{
+                                            'aria-label': 'weight'
+                                        }}
+                                        placeholder="SDT"
+                                    />
+                                </Stack>
+                            </Grid>
+                            <Grid item xs={12} md={12}>
+                                <Stack spacing={1}>
+                                    <InputLabel htmlFor="lastname-signup">Last Name*</InputLabel>
+                                    <OutlinedInput
+                                        size="medium"
+                                        id="Phone"
+                                        startAdornment={
+                                            <InputAdornment position="start">
+                                                <PhoneOutlined />
+                                            </InputAdornment>
+                                        }
+                                        aria-describedby="header-search-text"
+                                        inputProps={{
+                                            'aria-label': 'weight'
+                                        }}
+                                        placeholder="Full name"
+                                    />
+                                </Stack>
+                            </Grid>
+                            <Grid item xs={12} md={6}>
+                                <Stack spacing={1}>
+                                    <InputLabel htmlFor="lastname-signup">Last Name*</InputLabel>
+                                    <Select labelId="demo-simple-select-label" id="demo-simple-select" label="Age">
+                                        <MenuItem value={10}>Nam</MenuItem>
+                                        <MenuItem value={20}>Nữ</MenuItem>
+                                    </Select>
+                                </Stack>
+                            </Grid>
+                            <Grid item xs={12} md={6}>
+                                <Stack spacing={1}>
+                                    <InputLabel htmlFor="lastname-signup">Last Name*</InputLabel>
+                                    <OutlinedInput
+                                        size="medium"
+                                        id="IdCard"
+                                        startAdornment={
+                                            <InputAdornment position="start">
+                                                <IdcardOutlined />
+                                            </InputAdornment>
+                                        }
+                                        aria-describedby="header-search-text"
+                                        inputProps={{
+                                            'aria-label': 'weight'
+                                        }}
+                                        placeholder="cap bac"
+                                    />
+                                </Stack>
+                            </Grid>
+                            <Grid item xs={12} md={12}>
+                                <Stack spacing={1}>
+                                    <InputLabel htmlFor="lastname-signup">Last Name*</InputLabel>
+                                    <OutlinedInput
+                                        size="medium"
+                                        id="IdCard"
+                                        startAdornment={
+                                            <InputAdornment position="start">
+                                                <IdcardOutlined />
+                                            </InputAdornment>
+                                        }
+                                        aria-describedby="header-search-text"
+                                        inputProps={{
+                                            'aria-label': 'weight'
+                                        }}
+                                        placeholder="ddia chgiu"
+                                    />
+                                </Stack>
+                            </Grid>                           
                         </Grid>
-                        <Grid item xs={12} md={6}>
-                            <Stack spacing={1}>
-                                <InputLabel htmlFor="lastname-signup">Last Name*</InputLabel>
-                                <OutlinedInput
-                                    size="medium"
-                                    id="Phone"
-                                    startAdornment={
-                                        <InputAdornment position="start">
-                                            <PhoneOutlined />
-                                        </InputAdornment>
-                                    }
-                                    aria-describedby="header-search-text"
-                                    inputProps={{
-                                        'aria-label': 'weight'
-                                    }}
-                                    placeholder="SDT"
-                                />
-                            </Stack>
-                        </Grid>
-                        <Grid item xs={12} md={12}>
-                            <Stack spacing={1}>
-                                <InputLabel htmlFor="lastname-signup">Last Name*</InputLabel>
-                                <OutlinedInput
-                                    size="medium"
-                                    id="Phone"
-                                    startAdornment={
-                                        <InputAdornment position="start">
-                                            <PhoneOutlined />
-                                        </InputAdornment>
-                                    }
-                                    aria-describedby="header-search-text"
-                                    inputProps={{
-                                        'aria-label': 'weight'
-                                    }}
-                                    placeholder="Full name"
-                                />
-                            </Stack>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <Stack spacing={1}>
-                                <InputLabel htmlFor="lastname-signup">Last Name*</InputLabel>
-                                <Select labelId="demo-simple-select-label" id="demo-simple-select" label="Age">
-                                    <MenuItem value={10}>Nam</MenuItem>
-                                    <MenuItem value={20}>Nữ</MenuItem>
-                                </Select>
-                            </Stack>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <Stack spacing={1}>
-                                <InputLabel htmlFor="lastname-signup">Last Name*</InputLabel>
-                                <OutlinedInput
-                                    size="medium"
-                                    id="IdCard"
-                                    startAdornment={
-                                        <InputAdornment position="start">
-                                            <IdcardOutlined />
-                                        </InputAdornment>
-                                    }
-                                    aria-describedby="header-search-text"
-                                    inputProps={{
-                                        'aria-label': 'weight'
-                                    }}
-                                    placeholder="cap bac"
-                                />
-                            </Stack>
-                        </Grid>
-                        <Grid item xs={12} md={12}>
-                            <Stack spacing={1}>
-                                <InputLabel htmlFor="lastname-signup">Last Name*</InputLabel>
-                                <OutlinedInput
-                                    size="medium"
-                                    id="IdCard"
-                                    startAdornment={
-                                        <InputAdornment position="start">
-                                            <IdcardOutlined />
-                                        </InputAdornment>
-                                    }
-                                    aria-describedby="header-search-text"
-                                    inputProps={{
-                                        'aria-label': 'weight'
-                                    }}
-                                    placeholder="ddia chgiu"
-                                />
-                            </Stack>
-                        </Grid>
-                        <Grid item xs={12} md={12}>
-                            <Stack spacing={1}>
-                                <input type="file" />
-                            </Stack>
+                        <Grid xs={12} md={3} container>
+                            <Grid item xs={12} md={12}></Grid>
+                            <Grid item xs={12} md={12}>
+                                <img src="https://www.w3schools.com/tags/img_girl.jpg" alt="Italian Trulli" width="200" height="250" />
+                            </Grid>
+                            <Grid item xs={12} md={12}>
+                                <Stack spacing={1}>
+                                    <input type="file" />
+                                </Stack>
+                            </Grid>
+
                         </Grid>
                     </Grid>
                 </DialogContent>
@@ -157,7 +176,7 @@ export default function FormDialog() {
                         <Button variant="contained" color="primary" sx={{ m: 1 }} onClick={handleClose}>
                             Lưu
                         </Button>
-                        <Button variant="contained" sx={{ m: 1 }} onClick={handleClose}>
+                        <Button variant="contained" color="secondary" sx={{ m: 1 }} onClick={handleClose}>
                             Hủy
                         </Button>
                     </Box>
